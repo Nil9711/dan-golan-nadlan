@@ -1,0 +1,27 @@
+// app global css in SCSS form
+
+body {
+  font-family: system-ui, sans-serif;
+  color: $primary;
+  background-color: ghostwhite;
+}
+
+.main-header {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8ff;
+  height: auto;
+  img {
+    width: 45px;
+    padding: auto;
+    margin-top: 5px;
+  }
+  h3 {
+    color: $primary;
+    margin: auto;
+    font-size: 25px;
+  }
+}

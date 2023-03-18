@@ -1,0 +1,113 @@
+<template>
+  <div class="flow-step-4 flex flex-center column">
+    <p class="step-3-header">
+      מעולה, עד כאן נראה כי קיימת היתכנות גבוהה מצד הבנקים לעסקת המשכנתא
+      המבוקשת. כעת אשאל אותך מספר שאלות אישיות ובנוגע לניהול הסיכונים של הבנקים.
+      2 דקות וסיימנו, בואו נמשיך
+    </p>
+    <q-form @submit="onSubmit" class="flex column full-width">
+      <div class="row justify-evenly">
+        <q-select
+          v-model="overdraft"
+          :options="booleans"
+          label="חריגה ממסגרות אשראי ב3 שנים האחרונות?"
+          :rules="[(val) => !!val || 'שדה חובה']"
+        >
+          <template v-slot:no-option>
+            <q-item>
+              <q-item-section class="text-grey"> נא לבחור </q-item-section>
+            </q-item>
+          </template>
+        </q-select>
+        <q-select
+          v-model="loanReturnsDelay"
+          :options="booleans"
+          label="איחור בתשלומי הלוואות קיימות?"
+          :rules="[(val) => !!val || 'שדה חובה']"
+        >
+          <template v-slot:no-option>
+            <q-item>
+              <q-item-section class="text-grey"> נא לבחור </q-item-section>
+            </q-item>
+          </template>
+        </q-select>
+      </div>
+      <div class="row justify-evenly">
+        <q-select
+          v-model="returnedChecks"
+          :options="booleans"
+          label="המחאות חוזרות ב-3 השנים האחרונות?"
+          :rules="[(val) => !!val || 'שדה חובה']"
+        >
+          <template v-slot:no-option>
+            <q-item>
+              <q-item-section class="text-grey"> נא לבחור </q-item-section>
+            </q-item>
+          </template>
+        </q-select>
+        <q-select
+          v-model="files"
+          :options="booleans"
+          label="קיימים תיקים בהוצאה לפועל?"
+          :rules="[(val) => !!val || 'שדה חובה']"
+        >
+          <template v-slot:no-option>
+            <q-item>
+              <q-item-section class="text-grey"> נא לבחור </q-item-section>
+            </q-item>
+          </template>
+        </q-select>
+      </div>
+      <div class="row flex flex-center">
+        <q-btn
+          color="primary"
+          icon-right="arrow_circle_left"
+          label="המשך"
+          type="submit"
+        />
+      </div>
+    </q-form>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+  name: "FlowStep4",
+  emits: ["nextStep"],
+  setup(props, ctx) {
+    const onSubmit = () => {
+      ctx.emit("nextStep");
+    };
+    return {
+      onSubmit,
+      booleans: ref(["כן", "לא"]),
+      overdraft: ref("לא"),
+      loanReturnsDelay: ref("לא"),
+      returnedChecks: ref("לא"),
+      files: ref("לא"),
+    };
+  },
+};
+</script>
+<style scoped lang="scss">
+.flow-step-4 {
+  .step-3-header {
+    width: 500px;
+    text-align: center;
+  }
+  form {
+    input {
+      width: 200px;
+    }
+    select {
+      width: 200px;
+    }
+  }
+  .q-field {
+    width: 200px !important ;
+    margin: 10px auto;
+  }
+}
+</style>
