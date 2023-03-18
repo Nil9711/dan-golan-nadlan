@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="main-header">
-        <img src="../assets/logo-dan.png" />
-        <h3>דן גולן</h3>
+    <q-header elevated class="main-header" @click="reload()">
+      <img src="../assets/logo-dan.png" />
+      <h3>דן גולן</h3>
     </q-header>
 
     <q-page-container>
@@ -27,6 +27,10 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      reload: ref(() => {
+        window.location.href = "/#/";
+        window.location.reload();
+      }),
     };
   },
 });

@@ -1,18 +1,15 @@
 <template>
-  <q-page class="flex column">
-    <header v-if="step < 2" class="flex column flex-center q-my-lg">
-      <h3>יועץ משכנתאות ופיננסים</h3>
-      <h4>חבר בהתאחדות היועצים</h4>
+  <q-page>
+    <header class="flex column flex-center q-my-lg" v-if="step < 2">
+      <h3 class="text-center">יועץ משכנתאות ופיננסים</h3>
+      <h4 class="text-center">חבר בהתאחדות היועצים</h4>
     </header>
     <section class="flex flex-center row index-section-one q-my-lg">
-      <div class="flex flex-center col-10 justify-evenly">
+      <div class="flex flex-center col-10 justify-evenly flow-step-wrapper">
         <div class="col-2">
           <ProgressStepper :step="step" @clickStep="stepClicked" />
         </div>
         <div class="col-10 flex flex-center column">
-          <div class="q-my-lg">
-            <h6>מחשבון משכנתא לפי קריטריונים אישיים</h6>
-          </div>
           <FlowStep1 v-if="step === 1" @nextStep="step = 2" />
           <FlowStep2 v-if="step === 2" @nextStep="step = 3" />
           <FlowStep3 v-if="step === 3" @nextStep="step = 4" />
@@ -20,16 +17,16 @@
           <FlowStep5 v-if="step === 5" />
         </div>
       </div>
-      <div class="col-2 flex flex-center" v-if="step < 2">
+      <div v-if="step < 2 && !isMobile" class="col-2 flex flex-center">
         <img src="../assets/target.jpg" class="left-side-img" />
       </div>
     </section>
     <section
-      v-show="step < 2"
+      v-if="step < 2"
       class="flex justify-evenly full-width second-section section-margin"
     >
       <div>
-        <h3>הדרך הנכונה לחישוב משכנתא</h3>
+        <h3 class="text-center">הדרך הנכונה לחישוב משכנתא</h3>
         <ul>
           <li>
             מחשבון זה יעזור לך לחשב נכון את ההחזר החודשי, לפריסת התשלומים ותקופת
@@ -79,7 +76,7 @@
       v-show="step < 2"
       class="flex flex-center full-width section-margin text-center fourth-section"
     >
-      <h3 class="full-width">שאלות ותשובות - מחשבון משכנתאות</h3>
+      <h3 class="full-width text-center">שאלות ותשובות - מחשבון משכנתאות</h3>
       <QuestionComponent
         title="מה הרכב המשתנים שמחשבון זה כולל ?"
         text="מחשבון זה כולל בתוכו את המרכיבים הקובעים את סוג המשכנתא, סכום ההחזר, מספר השנים, ריביות ממוצעות למסלול."
@@ -99,8 +96,8 @@
         @click="toggleOpenedQuestion(3)"
       />
       <QuestionComponent
-        title="שאלה"
-        text="תשובה"
+        title=" איך אקבל את הריביות הכי טובות במשכנתא ?"
+        text="עובדים עם אנשי קשר ובעלי תפקידי מפתח בכל הבנקים ובאמצעות הכח של התאחדות היועצים משיגים את התנאים הטובים ביותר עבורכם , כל זאת מבלי שתצטרכו לכתת רגליים מבנק לבנק בחוסר בטחון ומטרה ."
         :isOpen="questionActive === 4"
         @click="toggleOpenedQuestion(4)"
       />
@@ -119,6 +116,7 @@ import FlowStep4 from "../components/FlowStep4.vue";
 import FlowStep5 from "src/components/FlowStep5.vue";
 
 import { ref } from "vue";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "IndexPage",
@@ -132,6 +130,7 @@ export default defineComponent({
     FlowStep5,
   },
   setup() {
+    const $q = useQuasar();
     const questionActive = ref(0);
     const assetPrice = ref(0);
     const step = ref(1);
@@ -159,6 +158,7 @@ export default defineComponent({
       assetPrice,
       nextStep,
       stepClicked,
+      isMobile: ref($q.platform.is.mobile),
     };
   },
 });
@@ -169,6 +169,7 @@ h4,
 h6 {
   margin: 10px auto;
 }
+
 .index-section-one {
   .left-side-img {
     width: 60%;
@@ -177,24 +178,25 @@ h6 {
 
 .second-section {
   margin: 150px auto;
+
   h3 {
     margin: 0px 0px 32px 0px;
   }
+
   ul {
+    padding: 16px;
+    margin: 5px;
     li {
       margin: 5px 0px;
     }
   }
+
   img {
     height: 200px;
     width: 200px;
     padding: 5px;
     margin: 45px 0px;
   }
-}
-
-.section-margin {
-  margin: 100px auto;
 }
 
 .third-section {
@@ -215,6 +217,7 @@ h6 {
     margin-top: 10px;
     border-radius: 50%;
   }
+
   p {
     margin: 10px auto;
     padding: 16px;
@@ -223,9 +226,27 @@ h6 {
     height: 150px;
   }
 }
+
 .fourth-section {
+  margin: 150px auto;
   h3 {
     margin: 24px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  /* smartphones, Android phones, landscape iPhone */
+  .second-section {
+    margin: auto;
+    ul {
+      margin: 10px;
+    }
+  }
+
+  .fourth-section {
+    h3 {
+      font-size: 20px;
+    }
   }
 }
 </style>

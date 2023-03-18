@@ -1,6 +1,9 @@
 <template>
   <div class="flow-step-2">
-    <div class="row">
+    <div class="row q-my-md flex flex-center">
+      <h6>פרטי המשכנתא</h6>
+    </div>
+    <div class="row flex-center">
       <CardOption
         icon="night_shelter"
         title="רכישת נכס ראשון"
@@ -23,7 +26,7 @@
         class="card-option"
       />
     </div>
-    <div class="row">
+    <div class="row flex-center">
       <CardOption
         icon="sell"
         title="איחוד הלוואות נוספות"

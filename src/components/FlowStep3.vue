@@ -1,14 +1,12 @@
 <template>
   <div class="flow-step-3 flex flex-center column">
     <p class="step-3-header">
-      מעולה, עד כאן נראה כי קיימת היתכנות גבוהה מצד הבנקים לעסקת המשכנתא
-      המבוקשת. כעת אשאל אותך מספר שאלות אישיות ובנוגע לניהול הסיכונים של הבנקים.
-      2 דקות וסיימנו, בואו נמשיך
+      מצויין , אנו נמצאים בסיכוי מירבי לאישור המשכנתא המבוקשת , בואו נעבור לשלב
+      הפרטים האישיים לאישור ביטחונות הבנק . רגע קצר וסיימנו ...
     </p>
     <q-form @submit="onSubmit" class="flex column full-width">
       <div class="row justify-evenly">
         <q-input
-          style="width: 330px"
           v-model="age"
           label="מה גילך?"
           :rules="[
@@ -22,7 +20,6 @@
         </q-input>
         <q-select
           v-model="status"
-          style="width: 330px"
           :options="statusOptions"
           label="מצב משפחתי"
           :rules="[(val) => !!val || 'שדה חובה']"
@@ -39,7 +36,6 @@
       </div>
       <div class="row justify-evenly">
         <q-input
-          style="width: 330px"
           v-model="totalIncome"
           label="הכנסה נטו למשק הבית"
           :rules="[(val) => !!val || 'שדה חובה']"
@@ -61,7 +57,6 @@
       </div>
       <div class="row justify-evenly">
         <q-input
-          style="width: 330px"
           v-model="extraLoans"
           label="האם יש הלוואות נוספות?"
           :rules="[(val) => !!val || 'שדה חובה']"
@@ -72,7 +67,6 @@
           </template>
         </q-input>
         <q-input
-          style="width: 330px"
           v-model="targetMonthlyPayment"
           label="ההחזר חודשי רצוי?"
           :rules="[(val) => !!val || 'שדה חובה']"
@@ -109,16 +103,15 @@ export default {
       age: ref(30),
       extraIncome: ref(4000),
       extraLoans: ref(2000),
-      status: ref('רווק'),
+      status: ref("רווק"),
       totalIncome: ref(10000),
-      targetMonthlyPayment: ref(4000) ,
+      targetMonthlyPayment: ref(4000),
     };
   },
 };
 </script>
 <style scoped lang="scss">
 .flow-step-3 {
-
   .step-3-header {
     width: 500px;
     text-align: center;
@@ -132,9 +125,16 @@ export default {
     }
   }
 }
-
 .q-field {
-  width: 200px !important ;
-  margin: 10px auto;
+  width: 300px !important ;
+  margin: 10px;
+}
+
+@media (max-width: 480px) {
+  /* smartphones, Android phones, landscape iPhone */
+  .step-3-header {
+    width: 305px !important;
+    text-align: center;
+  }
 }
 </style>

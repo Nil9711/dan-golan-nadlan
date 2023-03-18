@@ -1,8 +1,8 @@
 <template>
   <div class="qa-box">
-    <div class="flex justify-between">
-      <a>{{ title }}</a>
+    <div class="flex flex-center row inline qa-box-div">
       <span>{{ isOpen ? "-" : "+" }}</span>
+      <a>{{ title }}</a>
     </div>
     <p v-if="isOpen">{{ text }}</p>
   </div>
@@ -48,6 +48,20 @@ export default {
   p {
     text-align: start;
     padding: 16px;
+  }
+  .qa-box-div {
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* smartphones, Android phones, landscape iPhone */
+
+  .qa-box {
+    a {
+      font-size: 16px;
+      width: 75%;
+    }
   }
 }
 </style>

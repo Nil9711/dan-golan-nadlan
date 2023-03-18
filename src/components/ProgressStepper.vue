@@ -1,7 +1,7 @@
 <template>
   <q-stepper
     v-model="getStep"
-    :vertical="!isMobile"
+    :vertical="true"
     color="primary"
     animated
     flat
