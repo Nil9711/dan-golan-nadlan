@@ -60,6 +60,7 @@
           icon-right="arrow_circle_left"
           label="המשך"
           type="submit"
+          class="q-mb-lg"
         />
       </div>
     </q-form>

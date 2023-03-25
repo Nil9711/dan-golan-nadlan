@@ -44,6 +44,7 @@
           icon-right="arrow_circle_left"
           label="סיום"
           type="submit"
+          class="q-mb-lg"
         />
       </div>
     </q-form>

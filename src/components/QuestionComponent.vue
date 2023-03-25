@@ -46,7 +46,7 @@ export default {
     font-weight: bolder;
   }
   p {
-    text-align: start;
+    text-align: center;
     padding: 16px;
   }
   .qa-box-div {

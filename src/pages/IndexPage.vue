@@ -1,8 +1,8 @@
 <template>
   <q-page>
     <header class="flex column flex-center q-my-lg" v-if="step < 2">
-      <h3 class="text-center">יועץ משכנתאות ופיננסים</h3>
-      <h4 class="text-center">חבר בהתאחדות היועצים</h4>
+      <h4 class="text-center font-size-30">יועץ משכנתאות ופיננסים</h4>
+      <h3 class="text-center">חבר בהתאחדות היועצים</h3>
     </header>
     <section class="flex flex-center row index-section-one q-my-lg">
       <div class="flex flex-center col-10 justify-evenly flow-step-wrapper">
@@ -17,9 +17,9 @@
           <FlowStep5 v-if="step === 5" />
         </div>
       </div>
-      <div v-if="step < 2 && !isMobile" class="col-2 flex flex-center">
+      <!-- <div v-if="step < 2 && !isMobile" class="col-2 flex flex-center">
         <img src="../assets/target.jpg" class="left-side-img" />
-      </div>
+      </div> -->
     </section>
     <section
       v-if="step < 2"
@@ -97,7 +97,7 @@
       />
       <QuestionComponent
         title=" איך אקבל את הריביות הכי טובות במשכנתא ?"
-        text="עובדים עם אנשי קשר ובעלי תפקידי מפתח בכל הבנקים ובאמצעות הכח של התאחדות היועצים משיגים את התנאים הטובים ביותר עבורכם , כל זאת מבלי שתצטרכו לכתת רגליים מבנק לבנק בחוסר בטחון ומטרה ."
+        text="אנו עובדים עם אנשי קשר ובעלי תפקידי מפתח בכל הבנקים ובאמצעות הכח של התאחדות היועצים משיגים את התנאים הטובים ביותר עבורכם , כל זאת מבלי שתצטרכו לכתת רגליים מבנק לבנק בחוסר בטחון ומטרה ."
         :isOpen="questionActive === 4"
         @click="toggleOpenedQuestion(4)"
       />
@@ -136,6 +136,7 @@ export default defineComponent({
     const step = ref(1);
 
     const nextStep = () => {
+      window.scrollTo(0, 0);
       step.value += 1;
     };
 
@@ -148,7 +149,10 @@ export default defineComponent({
     };
 
     const stepClicked = (index) => {
-      step.value = index;
+      if (step.value !== index) {
+        window.scrollTo(0, 0);
+        step.value = index;
+      }
     };
 
     return {
@@ -214,16 +218,17 @@ h6 {
   box-shadow: 10px 10px 15px 10px rgb(0 0 0 / 10%);
 
   span {
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 50%;
   }
 
   p {
-    margin: 10px auto;
+    margin: auto;
     padding: 16px;
+    padding-top: 0px;
     font-size: 16px;
     text-align: center;
-    height: 150px;
+    height: 120px;
   }
 }
 
@@ -243,10 +248,12 @@ h6 {
     }
   }
 
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
   .fourth-section {
-    h3 {
-      font-size: 20px;
-    }
+    margin: auto;
   }
 }
 </style>

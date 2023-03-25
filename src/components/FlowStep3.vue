@@ -82,6 +82,7 @@
           icon-right="arrow_circle_left"
           label="המשך"
           type="submit"
+          class="q-mb-lg"
         />
       </div>
     </q-form>
@@ -92,14 +93,20 @@
 import { ref } from "vue";
 export default {
   name: "FlowStep3",
-  emits: ["nextStep", "prevStep"],
+  emits: ["nextStep"],
   setup(props, ctx) {
     const onSubmit = () => {
       ctx.emit("nextStep");
     };
     return {
       onSubmit,
-      statusOptions: ref(["נשוי", "רווק"]),
+      statusOptions: ref([
+        "בזוגיות",
+        "בזוגיות עם ילדים",
+        "רווק/ה",
+        "גרוש/ה",
+        "חד הורי",
+      ]),
       age: ref(30),
       extraIncome: ref(4000),
       extraLoans: ref(2000),

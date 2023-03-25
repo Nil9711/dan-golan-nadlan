@@ -66,6 +66,7 @@
         icon-right="arrow_circle_left"
         label="המשך"
         type="submit"
+        class="q-mb-lg"
       />
     </q-form>
   </div>
@@ -77,7 +78,7 @@ import CardOption from "./CardOption.vue";
 
 export default {
   name: "FlowStep2",
-  emits: ["nextStep", "prevStep"],
+  emits: ["nextStep"],
   props: {},
   setup(props, ctx) {
     const cardActive = ref(0);

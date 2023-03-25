@@ -1,7 +1,10 @@
 <template>
   <div>
     <q-form @submit="onSubmit">
-      <h6 class="text-center">מחשבון משכנתא לפי קריטריונים אישיים</h6>
+      <h6 class="text-center">
+        מחשבון משכנתא <br />
+        לפי קריטריונים אישיים
+      </h6>
       <div class="flex flex-center">
         <div class="col-6 q-mx-md">
           <q-input
@@ -51,7 +54,7 @@
 import { ref } from "vue";
 export default {
   name: "FlowStep1",
-  emits: ["nextStep", "prevStep"],
+  emits: ["nextStep"],
   setup(props, ctx) {
     const price = ref(2000000);
     const onSubmit = () => {
@@ -86,6 +89,5 @@ export default {
 
 @media (max-width: 480px) {
   /* smartphones, Android phones, landscape iPhone */
-  
 }
 </style>
