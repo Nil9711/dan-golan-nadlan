@@ -71,11 +71,7 @@ module.exports = configure(function (ctx) {
           .plugin("eslint-webpack-plugin")
           .use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
       },
-      env: {
-        SG_KEY: ctx.dev
-          ? "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"
-          : "",
-      },
+      env: {},
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
