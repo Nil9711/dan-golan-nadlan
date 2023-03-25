@@ -71,6 +71,11 @@ module.exports = configure(function (ctx) {
           .plugin("eslint-webpack-plugin")
           .use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
       },
+      env: {
+        SG_KEY: ctx.dev
+          ? "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"
+          : "",
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
@@ -87,7 +92,7 @@ module.exports = configure(function (ctx) {
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      lang: 'he', // Quasar language pack
+      lang: "he", // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
