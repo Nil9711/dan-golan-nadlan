@@ -56,13 +56,15 @@ export default {
   name: "FlowStep1",
   emits: ["nextStep"],
   setup(props, ctx) {
-    const price = ref(2000000);
+    const price = ref();
+    const area = ref();
     const onSubmit = () => {
-      localStorage.setItem("assetPrice", price.value);
+      let prevDetails = localStorage.getItem("clientInfo")
+      localStorage.setItem("clientInfo", {...prevDetails , "assetPrice": price.value, "area": area.value})
       ctx.emit("nextStep");
     };
     return {
-      area: ref("הגליל והגולן"),
+      area,
       price,
       options: ref([
         "הגליל והגולן",

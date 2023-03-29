@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <header class="flex column flex-center q-my-lg" v-if="step < 2">
+    <header class="flex column flex-center q-my-lg" v-if="step < 2" >
       <h4 class="text-center font-size-30">יועץ משכנתאות ופיננסים</h4>
       <h3 class="text-center">חבר בהתאחדות היועצים</h3>
     </header>
@@ -149,6 +149,9 @@ export default defineComponent({
     };
 
     const stepClicked = (index) => {
+      if (step.value < index) {
+        return
+      }
       if (step.value !== index) {
         window.scrollTo(0, 0);
         step.value = index;

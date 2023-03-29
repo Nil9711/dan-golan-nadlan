@@ -1,8 +1,10 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="main-header" @click="reload()">
-      <img src="../assets/logo-dan.png" />
-      <h3>דן גולן</h3>
+      <div class="cursor-pointer flex flex-center column">
+        <img src="../assets/logo-dan.png" />
+        <h3>דן גולן</h3>
+      </div>
     </q-header>
 
     <q-page-container>

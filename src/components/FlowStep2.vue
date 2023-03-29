@@ -83,7 +83,7 @@ export default {
   setup(props, ctx) {
     const cardActive = ref(0);
     const hintText = ref("");
-    const mortgageHeight = ref(1500000);
+    const mortgageHeight = ref();
     const assetPrice = ref(localStorage.getItem("assetPrice"));
 
     const activateCard = (index) => {
@@ -98,6 +98,7 @@ export default {
         alert("please select");
         return;
       } else {
+        localStorage.setItem("clientInfo", {...prevDetails , "mortgageHeight": mortgageHeight.value, "cardActive": cardActive.value})
         ctx.emit("nextStep");
       }
     };
