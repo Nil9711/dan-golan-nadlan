@@ -53,14 +53,15 @@
       <q-input
         v-model="mortgageHeight"
         label="ציין סכום"
-        :rules="[(val) => !!val || 'שדה זה הוא שדה חובה']"
+        :rules="[(val) => !!val || 'שדה זה הוא שדה חובה',
+              (val) => val > (assetPrice * 0.75) || `המחיר המינימלי הינו ${assetPrice * 0.75}`]"
       >
         <template v-slot:prepend>
-          <q-icon name="paid" />
+          <q-icon name="paid"/>
         </template>
         <template v-slot:hint>{{ hintText }}</template>
       </q-input>
-      <br />
+      <br/>
       <q-btn
         color="primary"
         icon-right="arrow_circle_left"
@@ -73,24 +74,25 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
 import CardOption from "./CardOption.vue";
 
 export default {
   name: "FlowStep2",
   emits: ["nextStep"],
+  components: {CardOption},
   props: {},
   setup(props, ctx) {
     const cardActive = ref(0);
     const hintText = ref("");
     const mortgageHeight = ref();
-    const assetPrice = ref(localStorage.getItem("assetPrice"));
+    const assetPrice = ref(JSON.parse(localStorage.getItem("clientInfo")).assetPrice);
+    hintText.value = `ניתן לבחור מינימום ${(assetPrice.value * 0.75)}`;
 
     const activateCard = (index) => {
       $(`#card-el-${cardActive.value}`).removeClass("active");
       cardActive.value = index;
       $(`#card-el-${index}`).addClass("active");
-      hintText.value = `ניתן לבחור עד ${assetPrice.value * 0.75}`;
     };
 
     const onSubmit = () => {
@@ -98,20 +100,25 @@ export default {
         alert("please select");
         return;
       } else {
-        localStorage.setItem("clientInfo", {...prevDetails , "mortgageHeight": mortgageHeight.value, "cardActive": cardActive.value})
+        let prevDetails = JSON.parse(localStorage.getItem("clientInfo"))
+        localStorage.setItem("clientInfo", JSON.stringify({
+          ...prevDetails,
+          "mortgageHeight": mortgageHeight.value,
+          "cardActive": cardActive.value
+        }))
         ctx.emit("nextStep");
       }
     };
-
     return {
       mortgageHeight,
       cardActive,
       activateCard,
       onSubmit,
       hintText,
+      assetPrice
     };
   },
-  components: { CardOption },
+
 };
 </script>
 <style scoped lang="scss">
@@ -120,15 +127,19 @@ export default {
     font-weight: normal;
     margin: 0px auto;
   }
+
   hr {
     width: 100%;
   }
+
   .my-card {
     margin: 5px 10px;
   }
+
   .active {
     background-color: rgba(214, 156, 255, 0.2) !important;
   }
+
   .card-option {
     width: 200px;
     text-align: center;

@@ -3,56 +3,67 @@
     <h6 class="q-my-sm">פרטים אישיים</h6>
     <q-form @submit="onSubmit" class="flex column full-width flex-center">
       <div class="flex column">
-        <q-input v-model="name" label="שם" :rules="[(val) => !!val || 'שדה חובה']">
+        <q-input v-model="name" label="שם מלא" :rules="[(val) => !!val || 'שדה חובה']">
           <template v-slot:prepend>
-            <q-icon name="badge" />
+            <q-icon name="badge"/>
           </template>
         </q-input>
         <q-input v-model="phone" label="טלפון" :rules="[(val) => !!val || 'שדה חובה']">
           <template v-slot:prepend>
-            <q-icon name="phone_iphone" />
+            <q-icon name="phone_iphone"/>
           </template>
         </q-input>
         <q-input v-model="email" label="מייל" :rules="[(val) => !!val || 'שדה חובה']">
           <template v-slot:prepend>
-            <q-icon name="email" />
+            <q-icon name="email"/>
           </template>
         </q-input>
       </div>
       <div class="row justify-evenly q-my-md">
         <q-checkbox class="checkbox" v-model="agreement"
-          label="אני מאשר שקראתי ומסכים לתנאי השימוש והפרטיות , וכי הפרטים שמסרתי ישמשו לקבלת פניות, הצעות שיווקיות מאיתנו או מצדדים שלישיים." />
+                    label="אני מאשר שקראתי ומסכים לתנאי השימוש והפרטיות , וכי הפרטים שמסרתי ישמשו לקבלת פניות, הצעות שיווקיות מאיתנו או מצדדים שלישיים."/>
       </div>
       <div class="row flex flex-center">
-        <q-btn color="primary" icon-right="arrow_circle_left" label="סיום" type="submit" class="q-mb-lg" />
+        <q-btn color="primary" icon-right="arrow_circle_left" label="סיום" type="submit" class="q-mb-lg"/>
       </div>
     </q-form>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
 import axios from 'axios'
 
 export default {
   name: "FlowStep5",
   emits: ["nextStep"],
   setup(props, ctx) {
+    const name = ref();
+    const phone = ref();
+    const email = ref();
     const onSubmit = () => {
+      let prevDetails = JSON.parse(localStorage.getItem("clientInfo"))
+      localStorage.setItem("clientInfo", JSON.stringify({
+        ...prevDetails,
+        "name": name.value,
+        "phone": phone.value,
+        "email": email.value,
+      }))
       ctx.emit("nextStep");
-      axios.post("https://api.sendgrid.com/v3/mail/send",
-        { "personalizations": [{ "to": [{ "email": "nil9711@gmail.com" }] }], "from": { "email": "test@example.com" }, "subject": "Sending with SendGrid is Fun", "content": [{ "type": "text/plain", "value": "and easy to do anywhere, even with cURL" }] }
-        ,
+      axios.post("http://dangolannadlannodejsapp-env.eba-hyui3sw7.us-east-2.elasticbeanstalk.com/api/email/sendFormData",
         {
-          "Authorization": `Bearer $${process.env.SG_KEY}`,
+          "content": [{"type": "text/plain", "emailParams":
+              JSON.parse(localStorage.getItem("clientInfo"))}]
+        },
+        {
           "Content-Type": "application/json"
         })
     };
     return {
       onSubmit,
-      name: ref("ניל גולן"),
-      phone: ref("0546437537"),
-      email: ref("nil9711@gmail.com"),
+      name: ref(),
+      phone: ref(),
+      email: ref(),
       agreement: ref(true),
     };
   },

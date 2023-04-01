@@ -4,7 +4,7 @@
     <q-form @submit="onSubmit" class="flex column full-width">
       <div class="row justify-evenly">
         <q-select
-          v-model="overdraft"
+          v-model="overDraft"
           :options="booleans"
           label="חריגה ממסגרות אשראי ב3 שנים האחרונות?"
           :rules="[(val) => !!val || 'שדה חובה']"
@@ -74,16 +74,28 @@ export default {
   name: "FlowStep4",
   emits: ["nextStep"],
   setup(props, ctx) {
+    const overDraft = ref();
+    const loanReturnsDelay = ref();
+    const returnedChecks = ref();
+    const files = ref();
     const onSubmit = () => {
+      let prevDetails = JSON.parse(localStorage.getItem("clientInfo"))
+      localStorage.setItem("clientInfo", JSON.stringify({
+        ...prevDetails,
+        "overDraft": overDraft.value,
+        "loanReturnsDelay": loanReturnsDelay.value,
+        "returnedChecks": returnedChecks.value,
+        "files": files.value
+      }))
       ctx.emit("nextStep");
     };
     return {
       onSubmit,
       booleans: ref(["כן", "לא"]),
-      overdraft: ref("לא"),
-      loanReturnsDelay: ref("לא"),
-      returnedChecks: ref("לא"),
-      files: ref("לא"),
+      overDraft,
+      loanReturnsDelay,
+      returnedChecks,
+      files,
     };
   },
 };

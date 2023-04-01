@@ -15,7 +15,7 @@
           ]"
         >
           <template v-slot:prepend>
-            <q-icon name="person" />
+            <q-icon name="person"/>
           </template>
         </q-input>
         <q-select
@@ -26,11 +26,11 @@
         >
           <template v-slot:no-option>
             <q-item>
-              <q-item-section class="text-grey"> נא לבחור </q-item-section>
+              <q-item-section class="text-grey"> נא לבחור</q-item-section>
             </q-item>
           </template>
           <template v-slot:prepend>
-            <q-icon name="family_restroom" />
+            <q-icon name="family_restroom"/>
           </template>
         </q-select>
       </div>
@@ -41,17 +41,16 @@
           :rules="[(val) => !!val || 'שדה חובה']"
         >
           <template v-slot:prepend>
-            <q-icon name="savings" />
+            <q-icon name="savings"/>
           </template>
         </q-input>
         <q-input
           v-model="extraIncome"
           label="הכנסות נוספות"
-          :rules="[(val) => !!val || 'שדה חובה']"
           hint="אם יש לך הכנסות נוספות הזן כאן את הסכום שלהן"
         >
           <template v-slot:prepend>
-            <q-icon name="price_change" />
+            <q-icon name="price_change"/>
           </template>
         </q-input>
       </div>
@@ -59,11 +58,10 @@
         <q-input
           v-model="extraLoans"
           label="האם יש הלוואות נוספות?"
-          :rules="[(val) => !!val || 'שדה חובה']"
           hint="אם יש לך הלוואות נוספות הזן כאן את הסכום שלהן"
         >
           <template v-slot:prepend>
-            <q-icon name="production_quantity_limits" />
+            <q-icon name="production_quantity_limits"/>
           </template>
         </q-input>
         <q-input
@@ -72,7 +70,7 @@
           :rules="[(val) => !!val || 'שדה חובה']"
         >
           <template v-slot:prepend>
-            <q-icon name="adjust" />
+            <q-icon name="adjust"/>
           </template>
         </q-input>
       </div>
@@ -90,29 +88,47 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
+
 export default {
   name: "FlowStep3",
   emits: ["nextStep"],
   setup(props, ctx) {
+    const statusOptions = ref([
+      "בזוגיות",
+      "בזוגיות עם ילדים",
+      "רווק/ה",
+      "גרוש/ה",
+      "חד הורי",
+    ])
+    const age = ref();
+    const extraIncome = ref();
+    const extraLoans = ref();
+    const status = ref();
+    const totalIncome = ref();
+    const targetMonthlyPayment = ref();
     const onSubmit = () => {
+      let prevDetails = JSON.parse(localStorage.getItem("clientInfo"))
+      localStorage.setItem("clientInfo", JSON.stringify({
+        ...prevDetails,
+        "age": age.value,
+        "extraIncome": extraIncome.value,
+        "extraLoans": extraLoans.value,
+        "status": status.value,
+        "totalIncome": totalIncome.value,
+        "targetMonthlyPayment": targetMonthlyPayment.value
+      }))
       ctx.emit("nextStep");
     };
     return {
       onSubmit,
-      statusOptions: ref([
-        "בזוגיות",
-        "בזוגיות עם ילדים",
-        "רווק/ה",
-        "גרוש/ה",
-        "חד הורי",
-      ]),
-      age: ref(30),
-      extraIncome: ref(4000),
-      extraLoans: ref(2000),
-      status: ref("רווק"),
-      totalIncome: ref(10000),
-      targetMonthlyPayment: ref(4000),
+      statusOptions,
+      age,
+      extraIncome,
+      extraLoans,
+      status,
+      totalIncome,
+      targetMonthlyPayment,
     };
   },
 };
@@ -123,17 +139,20 @@ export default {
     width: 500px;
     text-align: center;
   }
+
   form {
     input {
       width: 200px;
     }
+
     select {
       width: 200px;
     }
   }
 }
+
 .q-field {
-  width: 300px !important ;
+  width: 300px !important;
   margin: 10px;
 }
 

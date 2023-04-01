@@ -12,7 +12,7 @@
             label="מחיר הנכס"
             :rules="[
               (val) => !!val || 'שדה חובה',
-              (val) => val > 500000 || 'המחיר המינימלי הינו 500000',
+              (val) => val > 499999 || 'המחיר המינימלי הינו 500,000',
             ]"
           >
             <template v-slot:prepend>
@@ -59,8 +59,7 @@ export default {
     const price = ref();
     const area = ref();
     const onSubmit = () => {
-      let prevDetails = localStorage.getItem("clientInfo")
-      localStorage.setItem("clientInfo", {...prevDetails , "assetPrice": price.value, "area": area.value})
+      localStorage.setItem("clientInfo", JSON.stringify({"assetPrice": price.value, "area": area.value}))
       ctx.emit("nextStep");
     };
     return {

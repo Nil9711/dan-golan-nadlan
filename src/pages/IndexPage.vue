@@ -1,20 +1,20 @@
 <template>
   <q-page>
-    <header class="flex column flex-center q-my-lg" v-if="step < 2" >
+    <header class="flex column flex-center q-my-lg" v-if="step < 2">
       <h4 class="text-center font-size-30">יועץ משכנתאות ופיננסים</h4>
       <h3 class="text-center">חבר בהתאחדות היועצים</h3>
     </header>
     <section class="flex flex-center row index-section-one q-my-lg">
       <div class="flex flex-center col-10 justify-evenly flow-step-wrapper">
         <div class="col-2">
-          <ProgressStepper :step="step" @clickStep="stepClicked" />
+          <ProgressStepper :step="step" @clickStep="stepClicked"/>
         </div>
         <div class="col-10 flex flex-center column">
-          <FlowStep1 v-if="step === 1" @nextStep="step = 2" />
-          <FlowStep2 v-if="step === 2" @nextStep="step = 3" />
-          <FlowStep3 v-if="step === 3" @nextStep="step = 4" />
-          <FlowStep4 v-if="step === 4" @nextStep="step = 5" />
-          <FlowStep5 v-if="step === 5" />
+          <FlowStep1 v-if="step === 1" @nextStep="step = 2"/>
+          <FlowStep2 v-if="step === 2" @nextStep="step = 3"/>
+          <FlowStep3 v-if="step === 3" @nextStep="step = 4"/>
+          <FlowStep4 v-if="step === 4" @nextStep="step = 5"/>
+          <FlowStep5 v-if="step === 5"/>
         </div>
       </div>
       <!-- <div v-if="step < 2 && !isMobile" class="col-2 flex flex-center">
@@ -40,33 +40,38 @@
           <li>אנו נחשב עבורכם את התמהיל ללא עלות.</li>
         </ul>
       </div>
-      <img src="../assets/contract-image.png" />
+      <img src="../assets/contract-image.png"/>
     </section>
     <section
       v-show="step < 2"
       class="flex flex-center full-width third-section"
     >
       <div class="card-box">
-        <span>🧑‍💻</span>
         <p>
+          <span>📊</span>
+          <br/>
+          אנו נחשב לך החזר חודשי בהתאם לנתונים ובחישוב ניהול הסיכונים</p>
+      </div>
+      <div class="card-box">
+        <p class="q-py-md">
+          <span>🧑‍💻</span>
+          <br/>
           הזנת נתוני המשכנתא כגון: מיקום הנכס, מחיר, גובה משכנתא, גובה ההכנסות
           ועוד
         </p>
       </div>
       <div class="card-box">
-        <span>📊</span>
-        <p>אנו נחשב לך החזר חודשי בהתאם לנתונים ובחישוב ניהול הסיכונים</p>
-      </div>
-      <div class="card-box">
-        <span>📩</span>
         <p>
+          <span>📩</span>
+          <br/>
           אנו נשלח לך תמהיל אישי ע"פ הנתונים שנרשמו אצלנו, ובנוסף תקבל הדרכה
           וליווי אישי.
         </p>
       </div>
       <div class="card-box">
-        <span>🗝️</span>
         <p>
+          <span>🔑</span>
+          <br/>
           קבלת התמהיל הסופי הכולל: ריבית נכונה, החזר חודשי נוח, והכל בליווי אנשי
           מקצוע ולכל לקוחות הבנקים.
         </p>
@@ -106,7 +111,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import ProgressStepper from "../components/ProgressStepper.vue";
 import QuestionComponent from "../components/QuestionComponent.vue";
 import FlowStep1 from "../components/FlowStep1.vue";
@@ -115,8 +120,8 @@ import FlowStep3 from "../components/FlowStep3.vue";
 import FlowStep4 from "../components/FlowStep4.vue";
 import FlowStep5 from "src/components/FlowStep5.vue";
 
-import { ref } from "vue";
-import { useQuasar } from "quasar";
+import {ref} from "vue";
+import {useQuasar} from "quasar";
 
 export default defineComponent({
   name: "IndexPage",
@@ -193,6 +198,7 @@ h6 {
   ul {
     padding: 16px;
     margin: 5px;
+
     li {
       margin: 5px 0px;
     }
@@ -220,23 +226,25 @@ h6 {
   border-radius: 15%;
   box-shadow: 10px 10px 15px 10px rgb(0 0 0 / 10%);
 
-  span {
-    margin-top: 20px;
-    border-radius: 50%;
-  }
-
   p {
+    span {
+      border-radius: 50%;
+      font-size: 20px;
+    }
     margin: auto;
     padding: 16px;
-    padding-top: 0px;
     font-size: 16px;
     text-align: center;
-    height: 120px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
 .fourth-section {
   margin: 150px auto;
+
   h3 {
     margin: 24px auto;
   }
@@ -246,6 +254,7 @@ h6 {
   /* smartphones, Android phones, landscape iPhone */
   .second-section {
     margin: auto;
+
     ul {
       margin: 10px;
     }
