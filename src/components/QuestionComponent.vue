@@ -25,7 +25,7 @@ export default {
       required: true,
     },
   },
-  setup() {
+  setup () {
     return {};
   },
 };
@@ -36,8 +36,9 @@ export default {
   padding: 20px auto;
   background-color: rgba($color: grey, $alpha: 0.3);
   border-radius: 30px;
-  width: 80%;
+  width: 55%;
   cursor: pointer;
+
   a,
   span {
     padding: 5px;
@@ -45,10 +46,12 @@ export default {
     font-size: 25px;
     font-weight: bolder;
   }
+
   p {
     text-align: center;
     padding: 16px;
   }
+
   .qa-box-div {
     justify-content: space-between !important;
   }
@@ -58,6 +61,8 @@ export default {
   /* smartphones, Android phones, landscape iPhone */
 
   .qa-box {
+    width: 80%;
+
     a {
       font-size: 16px;
       width: 75%;
