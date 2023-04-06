@@ -48,7 +48,7 @@ export default {
         "phone": phone.value,
         "email": email.value,
       }))
-      axios.post("http://dangolanserver-env.eba-jrciayxr.us-east-2.elasticbeanstalk.com/api/email/sendFormData",
+      axios.post("https://dangolanserver-env.eba-jrciayxr.us-east-2.elasticbeanstalk.com/api/email/sendFormData",
         {
           "emailParams": JSON.parse(localStorage.getItem("clientInfo"))
         },
