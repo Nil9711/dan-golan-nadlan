@@ -1,10 +1,11 @@
 <template>
   <div class="qa-box">
-    <div class="flex flex-center row inline qa-box-div">
-      <span>{{ isOpen ? "-" : "+" }}</span>
+    <div class="flex flex-center row inline">
       <a>{{ title }}</a>
     </div>
-    <p v-if="isOpen">{{ text }}</p>
+    <div class="flex flex-center answer-div">
+      <p v-if="isOpen">{{ text }}</p>
+    </div>
   </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
       required: true,
     },
   },
-  setup () {
+  setup() {
     return {};
   },
 };
@@ -34,7 +35,7 @@ export default {
 .qa-box {
   margin: 20px auto;
   padding: 20px auto;
-  background-color: rgba($color: grey, $alpha: 0.3);
+  background-color: lavender;
   border-radius: 30px;
   width: 55%;
   cursor: pointer;
@@ -42,18 +43,18 @@ export default {
   a,
   span {
     padding: 5px;
-    margin: 0px 10px;
-    font-size: 25px;
+    margin: 0 10px;
+    font-size: 20px;
     font-weight: bolder;
   }
 
-  p {
-    text-align: center;
-    padding: 16px;
-  }
-
-  .qa-box-div {
-    justify-content: space-between !important;
+  .answer-div {
+    width: 100%;
+    p {
+      width: 75%;
+      text-align: center;
+      padding: 16px;
+    }
   }
 }
 
@@ -62,10 +63,9 @@ export default {
 
   .qa-box {
     width: 80%;
-
     a {
-      font-size: 16px;
-      width: 75%;
+      font-size: 14px;
+      padding: 5px;
     }
   }
 }

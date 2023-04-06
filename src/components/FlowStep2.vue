@@ -122,6 +122,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.q-field {
+  width: 200px !important;
+  margin: 10px;
+}
+
 .flow-step-2 {
   h6 {
     font-weight: normal;

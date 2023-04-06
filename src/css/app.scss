@@ -24,10 +24,20 @@ body {
     margin: auto;
     font-size: 25px;
   }
+  .breadcrumbs-area{
+    position: absolute;
+    color: $primary;
+    top: 20px;
+    left: 0;
+  }
 }
 
 .font-size-30 {
   font-size: 30px;
+}
+
+.font-size-15{
+  font-size: 15px;
 }
 
 @media (max-width: 480px) {

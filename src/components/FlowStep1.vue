@@ -2,7 +2,7 @@
   <div>
     <q-form @submit="onSubmit">
       <h6 class="text-center">
-        מחשבון משכנתא <br />
+        מחשבון משכנתא <br/>
         לפי קריטריונים אישיים
       </h6>
       <div class="flex flex-center">
@@ -16,7 +16,7 @@
             ]"
           >
             <template v-slot:prepend>
-              <q-icon name="paid" />
+              <q-icon name="paid"/>
             </template>
           </q-input>
         </div>
@@ -29,11 +29,11 @@
           >
             <template v-slot:no-option>
               <q-item>
-                <q-item-section class="text-grey"> נא לבחור </q-item-section>
+                <q-item-section class="text-grey"> נא לבחור</q-item-section>
               </q-item>
             </template>
             <template v-slot:prepend>
-              <q-icon name="place" />
+              <q-icon name="place"/>
             </template>
           </q-select>
         </div>
@@ -51,7 +51,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
+
 export default {
   name: "FlowStep1",
   emits: ["nextStep"],
@@ -81,8 +82,14 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.q-field {
+  width: 200px !important;
+  margin: 10px;
+}
+
 .input-area {
   width: 215px;
+
   span {
     font-size: 13px;
   }

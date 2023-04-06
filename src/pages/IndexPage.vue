@@ -7,14 +7,14 @@
     <section class="flex flex-center row index-section-one q-my-lg" :class="{ 'sections-height': step > 1 }">
       <div class="flex flex-center col-10 justify-evenly flow-step-wrapper">
         <div class="col-2">
-          <ProgressStepper :step="step" @clickStep="stepClicked" />
+          <ProgressStepper :step="step" @clickStep="stepClicked"/>
         </div>
         <div class="col-10 flex flex-center column">
-          <FlowStep1 v-if="step === 1" @nextStep="step = 2" />
-          <FlowStep2 v-if="step === 2" @nextStep="step = 3" />
-          <FlowStep3 v-if="step === 3" @nextStep="step = 4" />
-          <FlowStep4 v-if="step === 4" @nextStep="step = 5" />
-          <FlowStep5 v-if="step === 5" />
+          <FlowStep1 v-if="step === 1" @nextStep="step = 2"/>
+          <FlowStep2 v-if="step === 2" @nextStep="step = 3"/>
+          <FlowStep3 v-if="step === 3" @nextStep="step = 4"/>
+          <FlowStep4 v-if="step === 4" @nextStep="step = 5"/>
+          <FlowStep5 v-if="step === 5"/>
         </div>
       </div>
       <!-- <div v-if="step < 2 && !isMobile" class="col-2 flex flex-center">
@@ -37,20 +37,20 @@
           <li>אנו נחשב עבורכם את התמהיל ללא עלות.</li>
         </ul>
       </div>
-      <img src="../assets/contract-image.png" />
+      <img src="../assets/contract-image.png" alt="contract-image"/>
     </section>
     <section v-show="step < 2" class="flex flex-center full-width third-section">
       <div class="card-box">
         <p>
           <span>📊</span>
-          <br />
+          <br/>
           אנו נחשב לך החזר חודשי בהתאם לנתונים ובחישוב ניהול הסיכונים
         </p>
       </div>
       <div class="card-box">
         <p class="q-py-md">
           <span>🧑‍💻</span>
-          <br />
+          <br/>
           הזנת נתוני המשכנתא כגון: מיקום הנכס, מחיר, גובה משכנתא, גובה ההכנסות
           ועוד
         </p>
@@ -58,7 +58,7 @@
       <div class="card-box">
         <p>
           <span>📩</span>
-          <br />
+          <br/>
           אנו נשלח לך תמהיל אישי ע"פ הנתונים שנרשמו אצלנו, ובנוסף תקבל הדרכה
           וליווי אישי.
         </p>
@@ -66,7 +66,7 @@
       <div class="card-box">
         <p>
           <span>🔑</span>
-          <br />
+          <br/>
           קבלת התמהיל הסופי הכולל: ריבית נכונה, החזר חודשי נוח, והכל בליווי אנשי
           מקצוע ולכל לקוחות הבנקים.
         </p>
@@ -74,16 +74,24 @@
     </section>
     <section v-show="step < 2" class="flex flex-center full-width section-margin text-center fourth-section">
       <h3 class="full-width text-center">שאלות ותשובות - מחשבון משכנתאות</h3>
-      <QuestionComponent title="מה הרכב המשתנים שמחשבון זה כולל ?" text="מחשבון זה כולל בתוכו את המרכיבים הקובעים את סוג המשכנתא, סכום ההחזר, מספר השנים, ריביות ממוצעות למסלול." :isOpen="questionActive === 1" @click="toggleOpenedQuestion(1)" />
-      <QuestionComponent title="מה האינפורמציה שאקבל מהמחשבון ?" text='בסיום החישוב אדע, מה תקופת המשכנתא המומלצת, וההחזר החודשי, אחוז המימון והכל ע"פ הנחיות בנק ישראל. בסוף התהליך אקבל תמהיל אישי ע"פ הנתונים שסופקו.' :isOpen="questionActive === 2" @click="toggleOpenedQuestion(2)" />
-      <QuestionComponent title="מדוע נדרש להשאיר פרטים אישיים?" text="ככל שהפרטים יהיו מדויקים ומלאים, כך תבנה לך תוכנית מותאמת על הצד הטוב ביותר כגון: העסקה, ריביות, אורך המשכנתא, וההחזר החודשי, אנו מדגשים שהפרטים האישיים ישמשו לצורך חישובי תמהיל בלבד." :isOpen="questionActive === 3" @click="toggleOpenedQuestion(3)" />
-      <QuestionComponent title=" איך אקבל את הריביות הכי טובות במשכנתא ?" text="אנו עובדים עם אנשי קשר ובעלי תפקידי מפתח בכל הבנקים ובאמצעות הכח של התאחדות היועצים משיגים את התנאים הטובים ביותר עבורכם , כל זאת מבלי שתצטרכו לכתת רגליים מבנק לבנק בחוסר בטחון ומטרה ." :isOpen="questionActive === 4" @click="toggleOpenedQuestion(4)" />
+      <QuestionComponent title="מה הרכב המשתנים שמחשבון זה כולל ?"
+                         text="מחשבון זה כולל בתוכו את המרכיבים הקובעים את סוג המשכנתא, סכום ההחזר, מספר השנים, ריביות ממוצעות למסלול."
+                         :isOpen="questionActive === 1" @click="toggleOpenedQuestion(1)"/>
+      <QuestionComponent title="מה האינפורמציה שאקבל מהמחשבון ?"
+                         text='בסיום החישוב אדע, מה תקופת המשכנתא המומלצת, וההחזר החודשי, אחוז המימון והכל ע"פ הנחיות בנק ישראל. בסוף התהליך אקבל תמהיל אישי ע"פ הנתונים שסופקו.'
+                         :isOpen="questionActive === 2" @click="toggleOpenedQuestion(2)"/>
+      <QuestionComponent title="מדוע נדרש להשאיר פרטים אישיים?"
+                         text="ככל שהפרטים יהיו מדויקים ומלאים, כך תבנה לך תוכנית מותאמת על הצד הטוב ביותר כגון: העסקה, ריביות, אורך המשכנתא, וההחזר החודשי, אנו מדגשים שהפרטים האישיים ישמשו לצורך חישובי תמהיל בלבד."
+                         :isOpen="questionActive === 3" @click="toggleOpenedQuestion(3)"/>
+      <QuestionComponent title=" איך אקבל את הריביות הכי טובות במשכנתא ?"
+                         text="אנו עובדים עם אנשי קשר ובעלי תפקידי מפתח בכל הבנקים ובאמצעות הכח של התאחדות היועצים משיגים את התנאים הטובים ביותר עבורכם , כל זאת מבלי שתצטרכו לכתת רגליים מבנק לבנק בחוסר בטחון ומטרה ."
+                         :isOpen="questionActive === 4" @click="toggleOpenedQuestion(4)"/>
     </section>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import ProgressStepper from "../components/ProgressStepper.vue";
 import QuestionComponent from "../components/QuestionComponent.vue";
 import FlowStep1 from "../components/FlowStep1.vue";
@@ -92,8 +100,8 @@ import FlowStep3 from "../components/FlowStep3.vue";
 import FlowStep4 from "../components/FlowStep4.vue";
 import FlowStep5 from "src/components/FlowStep5.vue";
 
-import { ref } from "vue";
-import { useQuasar } from "quasar";
+import {ref} from "vue";
+import {useQuasar} from "quasar";
 
 export default defineComponent({
   name: "IndexPage",
@@ -106,7 +114,7 @@ export default defineComponent({
     FlowStep4,
     FlowStep5,
   },
-  setup () {
+  setup() {
     const $q = useQuasar();
     const questionActive = ref(0);
     const assetPrice = ref(0);
@@ -166,7 +174,7 @@ h6 {
   margin: 150px auto;
 
   h3 {
-    margin: 0px 0px 32px 0px;
+    margin: 0 0 32px 0;
   }
 
   ul {
@@ -174,7 +182,7 @@ h6 {
     margin: 5px;
 
     li {
-      margin: 5px 0px;
+      margin: 5px 0;
     }
   }
 
@@ -182,7 +190,7 @@ h6 {
     height: 200px;
     width: 200px;
     padding: 5px;
-    margin: 45px 0px;
+    margin: 45px 0;
   }
 }
 
