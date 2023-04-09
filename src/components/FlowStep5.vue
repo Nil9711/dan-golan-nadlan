@@ -3,7 +3,7 @@
     <h6 class="q-my-sm">פרטים אישיים</h6>
     <q-form @submit="onSubmit" class="flex column full-width flex-center">
       <div class="flex column">
-        <q-input v-model="name" label="שם מלא" :rules="[(val) => !!val || 'שדה חובה']">
+        <q-input v-model="fullName" label="שם מלא" :rules="[(val) => !!val || 'שדה חובה']">
           <template v-slot:prepend>
             <q-icon name="badge" />
           </template>
@@ -22,7 +22,7 @@
       <div class="row justify-evenly q-my-md">
         <q-checkbox class="checkbox" v-model="agreement" label="אני מאשר שקראתי ומסכים לתנאי השימוש והפרטיות , וכי הפרטים שמסרתי ישמשו לקבלת פניות, הצעות שיווקיות מאיתנו או מצדדים שלישיים." />
       </div>
-      <div class="row flex flex-center">
+      <div class="row flex flex-center q-pb-md">
         <q-btn color="primary" icon-right="arrow_circle_left" label="סיום" type="submit" class="q-mb-lg" />
       </div>
     </q-form>
@@ -37,14 +37,14 @@ export default {
   name: "FlowStep5",
   emits: ["nextStep"],
   setup (props, ctx) {
-    const name = ref();
+    const fullName = ref();
     const phone = ref();
     const email = ref();
     const onSubmit = () => {
       let prevDetails = JSON.parse(localStorage.getItem("clientInfo"))
       localStorage.setItem("clientInfo", JSON.stringify({
         ...prevDetails,
-        "name": name.value,
+        "fullName": fullName.value,
         "phone": phone.value,
         "email": email.value,
       }))
@@ -61,9 +61,9 @@ export default {
     };
     return {
       onSubmit,
-      name: ref(),
-      phone: ref(),
-      email: ref(),
+      fullName,
+      phone,
+      email,
       agreement: ref(true),
       isValidEmail (val) {
         const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;

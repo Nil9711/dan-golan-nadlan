@@ -74,7 +74,7 @@
           </template>
         </q-input>
       </div>
-      <div class="row flex flex-center q-mt-md">
+      <div class="row flex flex-center q-mt-md q-pb-md">
         <q-btn
           color="primary"
           icon-right="arrow_circle_left"

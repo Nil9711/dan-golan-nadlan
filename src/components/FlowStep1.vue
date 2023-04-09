@@ -38,7 +38,7 @@
           </q-select>
         </div>
       </div>
-      <div class="q-my-lg flex flex-center">
+      <div class="q-my-lg flex flex-center q-pb-md">
         <q-btn
           color="primary"
           icon-right="arrow_circle_left"

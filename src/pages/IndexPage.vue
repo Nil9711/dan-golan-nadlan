@@ -237,6 +237,12 @@ h6 {
   height: 81vh;
 }
 
+@media (max-width: 800px) {
+  .index-section-one {
+    height: auto;
+  }
+}
+
 @media (max-width: 480px) {
 
   /* smartphones, Android phones, landscape iPhone */

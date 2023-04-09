@@ -62,13 +62,15 @@
         <template v-slot:hint>{{ hintText }}</template>
       </q-input>
       <br/>
-      <q-btn
-        color="primary"
-        icon-right="arrow_circle_left"
-        label="המשך"
-        type="submit"
-        class="q-mb-lg"
-      />
+      <div class="q-pb-md">
+        <q-btn
+          color="primary"
+          icon-right="arrow_circle_left"
+          label="המשך"
+          type="submit"
+          class="q-mb-lg"
+        />
+      </div>
     </q-form>
   </div>
 </template>

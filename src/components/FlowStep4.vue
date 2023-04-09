@@ -54,7 +54,7 @@
           </template>
         </q-select>
       </div>
-      <div class="row flex flex-center">
+      <div class="row flex flex-center q-pb-md">
         <q-btn
           color="primary"
           icon-right="arrow_circle_left"
