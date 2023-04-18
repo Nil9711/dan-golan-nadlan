@@ -20,7 +20,8 @@
         </q-input>
       </div>
       <div class="row justify-evenly q-my-md">
-        <q-checkbox class="checkbox" v-model="agreement" label="אני מאשר שקראתי ומסכים לתנאי השימוש והפרטיות , וכי הפרטים שמסרתי ישמשו לקבלת פניות, הצעות שיווקיות מאיתנו או מצדדים שלישיים." />
+        <q-checkbox class="checkbox" v-model="agreement"
+          label="אני מאשר שקראתי ומסכים לתנאי השימוש והפרטיות , וכי הפרטים שמסרתי ישמשו לקבלת פניות, הצעות שיווקיות מאיתנו או מצדדים שלישיים." />
       </div>
       <div class="row flex flex-center q-pb-md">
         <q-btn color="primary" icon-right="arrow_circle_left" label="סיום" type="submit" class="q-mb-lg" />
@@ -36,7 +37,7 @@ import axios from 'axios'
 export default {
   name: "FlowStep5",
   emits: ["nextStep"],
-  setup (props, ctx) {
+  setup(props, ctx) {
     const fullName = ref();
     const phone = ref();
     const email = ref();
@@ -48,7 +49,7 @@ export default {
         "phone": phone.value,
         "email": email.value,
       }))
-      axios.post("https://dangolanserver-env.eba-jrciayxr.us-east-2.elasticbeanstalk.com/api/email/sendFormData",
+      axios.post("https://api.dan-golan.com/api/email/sendFormData",
         {
           "emailParams": JSON.parse(localStorage.getItem("clientInfo"))
         },
@@ -65,11 +66,11 @@ export default {
       phone,
       email,
       agreement: ref(true),
-      isValidEmail (val) {
+      isValidEmail(val) {
         const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
         return emailPattern.test(val) || 'אימייל לא תקין';
       },
-      isNumberValid (val) {
+      isNumberValid(val) {
         return !isNaN(val) || 'מספר טלפון לא תקין';
       }
     };
